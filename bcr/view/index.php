@@ -53,12 +53,14 @@ require_once(dirname(__FILE__) . '/../load.php');
 <!-- Title of page -->
 <div id="pageTitle">Business Card Parser Program</div>
 <br />
+<div id="info-box"></div>
 
 <!-- Display Content -->
 <div id="container">
+
     <textarea id="input-box" class="box" placeholder="Business Card Text Here..."></textarea>
 
-    <div id="symbol"><span class="glyphicon glyphicon-chevron-right" style="font-size:3em;"></span></div>
+    <div id="symbol"><span id="center-symbol" class="glyphicon glyphicon-chevron-right"></span></div>
 
     <div id="output-box" class="box"></div>
 

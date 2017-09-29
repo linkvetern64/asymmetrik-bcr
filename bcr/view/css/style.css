@@ -2,6 +2,11 @@ body{
     background-color: #F5CA5C;
 }
 
+#center-symbol{
+    font-size:3em;
+    margin:75px auto;
+}
+
 #container{
     background-color: white;
     display: block;
@@ -13,10 +18,22 @@ body{
     border:1px solid black;
 }
 
+#info-box{
+    position:absolute;
+    top:0;
+    left:0;
+    width:200px;
+    height:300px;
+    border:1px solid black;
+    background-color:white;
+    display:none;
+}
+
 #symbol{
     display:inline-block;
     height:200px;
-    margin:0 auto;
+    width:35%;
+    text-align:center;
 }
 
 #pageTitle{
