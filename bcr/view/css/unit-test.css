@@ -1,0 +1,70 @@
+
+
+#container{
+    background-color: white;
+    display: block;
+    position: relative;
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding: 12px;
+    border:1px solid black;
+    box-shadow: 3px 3px 1px #AAA;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#pageTitle{
+    width:100%;
+    text-align:center;
+    font-size:2em;
+}
+
+.passed{
+    font-size:1.1em;
+    color:#5cb85c;
+}
+
+.failed{
+    font-size:1.1em;
+    color:#d9534f;
+}
+
+.test-section{
+    display:block;
+    position: relative;
+    width:100%;
+    height:auto;
+    box-shadow: 3px 3px 1px #AAA;
+    border:1px solid black;
+    margin:10px auto;
+}
+
+.title-section{
+    font-size:2em;
+    width:100%;
+    height:auto;
+}
+
+.body-section{
+    padding:12px;
+}
+
+#table-of-contents{
+    display:block;
+
+}
