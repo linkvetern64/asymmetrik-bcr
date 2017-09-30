@@ -5,7 +5,7 @@
  */
 require_once(dirname(__FILE__) . '/../load.php');
 
-$BCR = new BusinessCardReader();
+$BCR = new BusinessCardParser();
 
 ?>
 <!DOCTYPE html>

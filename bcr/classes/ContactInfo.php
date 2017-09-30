@@ -2,6 +2,8 @@
 /**
  * @author Josh
  * @date 9/29/2017
+ * @desc
+ * ContactInfo is a class which holds the contact info of parsed business cards
  */
 class ContactInfo
 {
@@ -21,15 +23,21 @@ class ContactInfo
         $this->email = $email;
     }
 
+    /**
+     * @return String - The name of the card owner
+     */
     function getName(){
         return $this->name;
     }
 
-    function getNumber(){
+    /**
+     * @return mixed - The number of the 
+     */
+    function getPhoneNumber(){
         return $this->phone;
     }
 
-    function getEmail(){
+    function getEmailAddress(){
         return $this->email;
     }
 

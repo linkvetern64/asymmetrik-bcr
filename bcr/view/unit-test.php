@@ -8,7 +8,6 @@ require_once(dirname(__FILE__) . '/../load.php');
 //define passed and failed HTML objects
 $passed = "<span class='glyphicon glyphicon-ok passed'></span>";
 $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,20 +32,43 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
 <div id="container">
     <!-- BusinessCardReader test section -->
     <div class="test-section">
-        <div class="title-section">Tests for BusinessCardReader.php</div>
+        <div class="title-section">Tests for BusinessCardParser.php</div>
         <div class="body-section">
+            <?php
+                $sampleInput = "Albin Library UMBC
+                                Joshua Standiford
+                                phone: (410)800-8804
+                                email: joshua.standiford@gmail.com
+                                Full Stack Developer";
+
+                $sampleInputTwo = "ASYMMETRIK LTD
+                                Mike Smith
+                                Senior Software Engineer
+                                (410)555-1234
+                                msmith@asymmetrik.com";
+            ?>
             <table>
                 <tr>
                     <th>Unit Test Description</th>
                     <th>Passed</th>
                 </tr>
                 <tr>
-                    <td>BusinessCardReader constructor creates valid object</td>
+                    <td>BusinessCardParser constructor creates valid object</td>
                     <td>
                         <?php
-                        $BCR = new BusinessCardReader();
-                        if(is_a($BCR, "BusinessCardReader")){ echo $passed;}
+                        $BCR = new BusinessCardParser();
+                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
                         else {echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser parses and returns valid ContactInfo instance</td>
+                    <td>
+                        <?php
+                        $bcrContact = $BCR->getContactInfo($sampleInput);
+                        if(is_a($bcrContact, "ContactInfo")){echo $passed;}
+                        else{echo $failed;}
                         ?>
                     </td>
                 </tr>
@@ -85,7 +107,7 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                     <td>Phone returned by ContactInfo matches one used in constructor - "4105556789"</td>
                     <td>
                         <?php
-                        if($contact->getNumber() === "4105556789"){ echo $passed;}
+                        if($contact->getPhoneNumber() === "4105556789"){ echo $passed;}
                         else {echo $failed;}
                         ?>
                     </td>
@@ -94,7 +116,7 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                     <td>Email returned by ContactInfo matches one used in constructor - "test@gmail.org"</td>
                     <td>
                         <?php
-                        if($contact->getEmail() === "test@gmail.org"){ echo $passed;}
+                        if($contact->getEmailAddress() === "test@gmail.org"){ echo $passed;}
                         else {echo $failed;}
                         ?>
                     </td>
@@ -145,8 +167,8 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                     <td>BusinessCardReader constructor creates valid object</td>
                     <td>
                         <?php
-                        $BCR = new BusinessCardReader();
-                        if(is_a($BCR, "BusinessCardReader")){ echo $passed;}
+                        $BCR = new BusinessCardParser();
+                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
                         else {echo $failed;}
                         ?>
                     </td>
@@ -167,8 +189,8 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                     <td>BusinessCardReader constructor creates valid object</td>
                     <td>
                         <?php
-                        $BCR = new BusinessCardReader();
-                        if(is_a($BCR, "BusinessCardReader")){ echo $passed;}
+                        $BCR = new BusinessCardParser();
+                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
                         else {echo $failed;}
                         ?>
                     </td>
@@ -189,8 +211,8 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                     <td>BusinessCardReader constructor creates valid object</td>
                     <td>
                         <?php
-                        $BCR = new BusinessCardReader();
-                        if(is_a($BCR, "BusinessCardReader")){ echo $passed;}
+                        $BCR = new BusinessCardParser();
+                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
                         else {echo $failed;}
                         ?>
                     </td>
@@ -211,8 +233,8 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                     <td>BusinessCardReader constructor creates valid object</td>
                     <td>
                         <?php
-                        $BCR = new BusinessCardReader();
-                        if(is_a($BCR, "BusinessCardReader")){ echo $passed;}
+                        $BCR = new BusinessCardParser();
+                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
                         else {echo $failed;}
                         ?>
                     </td>

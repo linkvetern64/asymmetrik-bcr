@@ -7,10 +7,10 @@
  */
 require_once("ContactInfo.php");
 
-class BusinessCardReader
+class BusinessCardParser
 {
     /**
-     * BusinessCardReader constructor.
+     * BusinessCardParser constructor.
      */
     function __construct(){
 
@@ -26,7 +26,6 @@ class BusinessCardReader
     public function getContactInfo($document){
         //split the document by return or new line escape sequence into array.
         $data = explode("\n", $document);
-
         $email = $this->parseEmail($data);
         $name = $this->parseName($data, $email);
         $phone = $this->parsePhone($data);
