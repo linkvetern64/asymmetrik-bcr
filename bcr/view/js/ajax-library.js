@@ -6,7 +6,7 @@
  * on failure the responseText is submitted to the console.
  */
 function parseCard(){
-    var input = document.getElementById("input-box").value;
+    var input = document.getElementById("input-box").innerHTML;
 
     new Ajax.Request( "parseBCR.php",
         {
@@ -23,11 +23,11 @@ function parseCard(){
  * @param ajax - responseText from the
  */
 function displayResults(ajax){
-
+    console.log(ajax.responseText);
     var output = document.getElementById("output-box");
-    output.value = "";
+    output.innerHTML = "";
     var json = JSON.parse(ajax.responseText);
-    output.value =  "Name: " + json["name"] + "<br/>" +
+    output.innerHTML =  "Name: " + json["name"] + "<br/>" +
                         "Phone: " + json["phone"] + "<br/>" +
                         "Email: " + json["email"];
 }

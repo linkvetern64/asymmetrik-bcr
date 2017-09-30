@@ -15,9 +15,6 @@ class ContactInfo
      * ContactInfo constructor.
      */
     function __construct($name, $phone, $email){
-        if ($name === NULL || $phone === NULL || $email === NULL) {
-            throw new Exception('NULL Parameter');
-        }
         $this->name = $name;
         $this->phone = $phone;
         $this->email = $email;

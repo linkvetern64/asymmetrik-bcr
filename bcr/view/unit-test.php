@@ -65,11 +65,7 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                 <tr>
                     <td>BusinessCardParser parses and returns valid ContactInfo instance</td>
                     <td>
-                        <?php
-                        $bcrContact = $BCR->getContactInfo($sampleInput);
-                        if(is_a($bcrContact, "ContactInfo")){echo $passed;}
-                        else{echo $failed;}
-                        ?>
+
                     </td>
                 </tr>
             </table>

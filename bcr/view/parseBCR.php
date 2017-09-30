@@ -10,7 +10,6 @@ require_once(dirname(__FILE__) . '/../load.php');
 //filter the inputs before they're sent to the classes for parsing.
 $document = Sanitizer::sanitize($_GET["input"], NULL);
 $BCR = new BusinessCardParser();
-
 //The method getContactInfo returns a new ContactInfo class.
 $contact = $BCR->getContactInfo($document);
 
