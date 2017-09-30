@@ -6,6 +6,13 @@
  * Time: 9:05 PM
  */
 require_once(dirname(__FILE__) . '/../load.php');
-$input = $_GET["input"];
 
-echo $input;
+
+$input = Sanitizer::sanitize($_GET["input"], NULL);
+
+$BCR = new BusinessCardReader();
+
+echo $BCR->parseEmail($input);
+
+
+//echo $input;

@@ -22,8 +22,6 @@ $BCR = new BusinessCardReader();
 
     <!-- Distinct CSS -->
     <link rel="stylesheet" href="css/unit-test.css" type="text/css" media="screen">
-
-
 </head>
 <body>
 
@@ -35,5 +33,6 @@ $BCR = new BusinessCardReader();
 
 <!-- Load scripts at the end -->
 <script src="js/example-library.js"></script>
+<script src="js/ajax-library.js"></script>
 </body>
 </html>
