@@ -10,7 +10,7 @@ Prerequisites
 * Oracle Virtualbox - https://www.virtualbox.org/wiki/Downloads
 * (Windows only) GitBash - https://git-scm.com/downloads
 * Vagrant -     https://www.vagrantup.com/downloads.html
-* 
+* Vagrant Plugins
 * GitHub - https://github.com
 
     (These links we're the most recent versions as of 9/30/2017)
@@ -42,4 +42,15 @@ Installation
     Most importantly having a github account will be the means of cloning and allowing you to
     use this project.
     On the website, create an account.  This will be essential for being able to clone and use the code. 
+    
+* Vagrant Plugins
+
+    Once you have Vagrant and GitBash installed.  Open the GitBash CLI and type in
+        
+        "vagrant plugin install vagrant-hostsupdater" 
+        "vagrant plugin install vagrant-hostmanager"
+    
+    -- hostsupdater is at (version. 1.0.2) as of 9/30/2017
+    
+    -- hostmanager is at (version. 1.8.7) as of 9/30/2017
     
