@@ -107,6 +107,29 @@ class BusinessCardParser
             }
         }
 
+        $possibleNames = [];
+        foreach($data as $line){
+            //If no email context is given, attempt guess at name.  Remove all lines with numbers and special characters
+            if (!preg_match('/\\d/', $line) && !preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $line)){
+
+                //Assuming only First and Last names are listed as names on the card.  Remove anything more than 2
+                if(sizeof(explode(' ', $line)) < 3 && preg_match_all('/[A-Z]/', $line) < 3){
+                    array_push($possibleNames, trim($line));
+                }
+            }
+        }
+
+        $nameSize = sizeof($possibleNames);
+        //Assuming a valid name was found.  Return this.
+        if($nameSize === 1){
+            return $possibleNames[0];
+        }
+        //Equal probability of entries without more insight.  Make a guess.
+        elseif($nameSize > 1){
+            return $possibleNames[array_rand($possibleNames)];
+        }
+
+        //In the case that no valid names were found or nothing could be done
         return "N/A";
     }
 }

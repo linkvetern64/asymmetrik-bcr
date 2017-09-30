@@ -31,6 +31,8 @@ function parseCard(){
  * to index.php's output-box.
  */
 function displayResults(ajax){
+    console.log(ajax.responseText);
+
     var output = document.getElementById("output-box");
     output.innerHTML = "";
     var json = JSON.parse(ajax.responseText);

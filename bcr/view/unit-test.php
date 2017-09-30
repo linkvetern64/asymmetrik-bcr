@@ -26,11 +26,17 @@ $sampleInputTwo = "ASYMMETRIK LTD
                                 (410)555-1234
                                 msmith@asymmetrik.com";
 
+
 $invalidEmail = "Joshua Standiford
                                  Library Dev
                                  (410) 239 4697";
 
 $sampleData = ["Albin Library UMBC", "Joshua Standiford", "phone: (410)800-8804", "email: joshua.standiford@gmail.com", "Full Stack Developer"];
+
+$missingEmail = ["ASYMMETRIK LTD", "Mike Smith", "phone: (410)800-8804", "Full Stack Developer"];
+
+$missingEmailName = ["ASYMMETRIK LTD", "phone: (410)800-8804", "Full Stack Developer"];
+
 
 $validEmail = ["joshua.standiford@hotmail.com", "testgarabage-nirvana@.org"];
 
@@ -143,6 +149,26 @@ $dirtyEmail = "g@gm/ail.com";
                     <td>
                         <?php
                         $output = $BCR->parsePhone($invalidEmail);
+                        if(stripos("N/A", $output) !== false){  echo $passed; }
+                        else{ echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser method parseName parses name with no email</td>
+                    <td>
+                        <?php
+                        $output = $BCR->parseName($missingEmail, "test");
+                        if(stripos("Mike Smith", $output) !== false){  echo $passed; }
+                        else{ echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser method parseName returns N/A if no valid name is found</td>
+                    <td>
+                        <?php
+                        $output = $BCR->parseName($missingEmailName, "test");
                         if(stripos("N/A", $output) !== false){  echo $passed; }
                         else{ echo $failed;}
                         ?>
