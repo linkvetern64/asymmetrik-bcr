@@ -23,7 +23,13 @@ function parseCard(){
  * @param ajax - responseText from the
  */
 function displayResults(ajax){
-    console.log(ajax.responseText);
+
+    var output = document.getElementById("output-box");
+    output.innerHTML = "";
+    var json = JSON.parse(ajax.responseText);
+    output.innerHTML =  "Name: " + json["name"] + "<br/>" +
+                        "Phone: " + json["phone"] + "<br/>" +
+                        "Email: " + json["email"];
 }
 
 function displayFailure(ajax){
