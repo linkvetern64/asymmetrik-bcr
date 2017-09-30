@@ -106,7 +106,6 @@ class BusinessCardParser
                 }
             }
         }
-        //If a name is not found above, then informed guessing begins.
 
         return "N/A";
     }

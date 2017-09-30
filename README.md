@@ -75,6 +75,11 @@ now wait until Vagrant finishes filling up the terminal with output.
 you can now open up your web browser and in the navigation bar enter "bcr.dev".
 This will take you to the local server Vagrant initialized with the git project loaded.
 
+In order to turn off the Vagrant VM and shutdown the server simply run.
+
+    "vagrant destroy"
+    
+
 Project Specifications
 -
 
