@@ -20,7 +20,11 @@ function parseCard(){
 
 /**
  * @name displayResults
- * @param ajax - responseText from the
+ * @param ajax - responseText from parseBCR.php
+ * @desc
+ * This function takes responseText from parseBCR in the form of JSON.
+ * The JSON is then parsed and a string is built.  That string is then output
+ * to index.php's output-box.
  */
 function displayResults(ajax){
     var output = document.getElementById("output-box");
@@ -31,6 +35,13 @@ function displayResults(ajax){
                         "Email: " + json["email"];
 }
 
+/**
+ * @name displayFailure
+ * @param ajax - responseText from parseBCR.php
+ * @desc
+ * This function is called when something with Ajax fails.
+ * The issue will be output to the browser console.
+ */
 function displayFailure(ajax){
     console.log(ajax.responseText);
 }

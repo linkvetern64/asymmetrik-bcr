@@ -40,6 +40,9 @@ class BusinessCardParser
      * This function searches for a valid email address within the lines of data passed into parseEmail.
      */
     public function parseEmail($data){
+        if($data === NULL){
+            return "N/A";
+        }
         $email = "N/A";
         foreach($data as $line){
             $line = Sanitizer::sanitize($line, FILTER_SANITIZE_EMAIL);
@@ -60,6 +63,10 @@ class BusinessCardParser
      *
      */
     public function parsePhone($data){
+        if($data === NULL){
+            return "N/A";
+        }
+
         //filter lines that contain these phrases
         foreach($data as $line){
             // Check line for fax number instead and skip that line.
@@ -87,17 +94,18 @@ class BusinessCardParser
      * if any line contains numbers or symbols that line is also thrown away.
      */
     public function parseName($data, $email){
-        //Want to return string before the '@' in the email.
-        $context = explode("@", $email)[0];
+        if($email != NULL) {
+            //Want to return string before the '@' in the email.
+            $context = explode("@", $email)[0];
 
-        foreach($data as $line){
-            //This pulls what could be the last name from the exploded string.
-            $guess = array_map('trim', explode(' ', $line))[1];
-            if (stripos($context, $guess) !== false) {
-                return $line;
+            foreach ($data as $line) {
+                //This pulls what could be the last name from the exploded string.
+                $guess = array_map('trim', explode(' ', $line))[1];
+                if (stripos($context, $guess) !== false) {
+                    return $line;
+                }
             }
         }
-
         //If a name is not found above, then informed guessing begins.
 
         return "N/A";

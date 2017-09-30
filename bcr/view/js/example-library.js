@@ -1,4 +1,13 @@
 /**
+ * @author Joshua Standiford
+ * @date 9/29/2017
+ * @desc
+ * This file is used for local-testing for index.php.
+ * The buttons are loaded with test data that can be rapidly tested
+ * without having to keep track of copy-pasting.
+ */
+
+/**
  *
  * @returns {[null,null,null]}
  */
@@ -33,8 +42,13 @@ function getExamples(){
     return examples;
 }
 /**
- *
- * @param index
+ * @name showExample
+ * @param index - index of the example you want to test
+ * @desc
+ * This file pulls the pre-loaded example array into this function.
+ * If the index is in a valid range, then the info-box that appears
+ * on the left of the screen is now visible and displays the example
+ * text in the box.
  */
 function showExample(index){
     var examples = getExamples();
@@ -47,6 +61,13 @@ function showExample(index){
     box.style = "display:block";
 }
 
+/**
+ * @name loadExample
+ * @param index - index of the example you want to test
+ * @desc
+ * When this function is entered, the example array is pulled into this function.
+ * The input-box value is changed to the example text from the array.
+ */
 function loadExample(index){
     var examples = getExamples();
 
@@ -54,11 +75,15 @@ function loadExample(index){
     if(index > examples.length){return;}
 
     var input = document.getElementById("input-box");
-    input.innerHTML = examples[index];
+    input.value = examples[index];
 }
 
 /**
- *
+ * @name hideExample
+ * @desc
+ * This function is called on index.php, when you mouse off the buttons on the
+ * bottom of the page.  This hides the info-box once again and removes the example
+ * text that was inside of it.
  */
 function hideExample(){
     var box = document.getElementById("info-box");

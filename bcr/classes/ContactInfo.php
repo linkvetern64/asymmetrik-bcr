@@ -28,17 +28,23 @@ class ContactInfo
     }
 
     /**
-     * @return mixed - The number of the 
+     * @return mixed - The number of the card owner
      */
     function getPhoneNumber(){
         return $this->phone;
     }
 
+    /**
+     * @return mixed - the email address from the card owner
+     */
     function getEmailAddress(){
         return $this->email;
     }
 
-
+    /**
+     * @return string - Returns a formatted string
+     * containing the data from this instance of ContactInfo.
+     */
     function toString(){
 
         $string = "Name: " . $this->name . "\n" .
@@ -48,6 +54,10 @@ class ContactInfo
         return $string;
     }
 
+    /**
+     * @return string - a JSON encoded string using the member
+     * variables of this object.
+     */
     function toJSON(){
         return json_encode(get_object_vars($this));
     }

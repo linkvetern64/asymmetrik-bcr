@@ -2,12 +2,41 @@
 /**
  * Created by:
  * User: Josh
+ * @desc
+ * Unit testing file for asymmetrik-bcr project.
+ * When the page loads the php functions run their tests and
+ * will show what passed and failed.
  */
 require_once(dirname(__FILE__) . '/../load.php');
 
 //define passed and failed HTML objects
 $passed = "<span class='glyphicon glyphicon-ok passed'></span>";
 $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
+
+//Created sample data used for testing
+$sampleInput = "Albin Library UMBC
+                                Joshua Standiford
+                                phone: (410)800-8804
+                                email: joshua.standiford@gmail.com
+                                Full Stack Developer";
+
+$sampleInputTwo = "ASYMMETRIK LTD
+                                Mike Smith
+                                Senior Software Engineer
+                                (410)555-1234
+                                msmith@asymmetrik.com";
+
+$invalidEmail = "Joshua Standiford
+                                 Library Dev
+                                 (410) 239 4697";
+
+$sampleData = ["Albin Library UMBC", "Joshua Standiford", "phone: (410)800-8804", "email: joshua.standiford@gmail.com", "Full Stack Developer"];
+
+$validEmail = ["joshua.standiford@hotmail.com", "testgarabage-nirvana@.org"];
+
+$dirtyInput = "<b>Test</b>";
+
+$dirtyEmail = "g@gm/ail.com";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,21 +63,6 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
     <div class="test-section">
         <div class="title-section">Tests for BusinessCardParser.php</div>
         <div class="body-section">
-            <?php
-                $sampleInput = "Albin Library UMBC
-                                Joshua Standiford
-                                phone: (410)800-8804
-                                email: joshua.standiford@gmail.com
-                                Full Stack Developer";
-
-                $sampleInputTwo = "ASYMMETRIK LTD
-                                Mike Smith
-                                Senior Software Engineer
-                                (410)555-1234
-                                msmith@asymmetrik.com";
-
-                $dirtyInput = "";
-            ?>
             <table>
                 <tr>
                     <th>Unit Test Description</th>
@@ -69,6 +83,68 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                     <td>
                         <?php
                         $tmp_contact = $BCR->getContactInfo($sampleInput);
+                        if(is_a($tmp_contact, "ContactInfo")){ echo $passed;}
+                        else {echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser method parseEmail expected to find valid email</td>
+                    <td>
+                        <?php
+                        $output = $BCR->parseEmail($validEmail);
+                        if(stripos("joshua.standiford@hotmail.com", $output) !== false){  echo $passed; }
+                        else{ echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser method parseEmail expected to return "N/A"</td>
+                    <td>
+                        <?php
+                        $output = $BCR->parseEmail($invalidEmail);
+                        if(stripos("N/A", $output) !== false){  echo $passed; }
+                        else{ echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser method parseName expected to find valid name</td>
+                    <td>
+                        <?php
+                        $output = $BCR->parseName($sampleData, "joshua.standiford@gmail.com");
+                        if(stripos("Joshua Standiford", $output) !== false){  echo $passed; }
+                        else{ echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser method parseName expected to return "N/A"</td>
+                    <td>
+                        <?php
+                        $output = $BCR->parseName($invalidEmail, "joshua.standiford@gmail.com");
+                        if(stripos("N/A", $output) !== false){  echo $passed; }
+                        else{ echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser method parsePhone expected to find valid phone number</td>
+                    <td>
+                        <?php
+                        $output = $BCR->parsePhone($sampleData);
+                        if(stripos("4108008804", $output) !== false){  echo $passed; }
+                        else{ echo $failed;}
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BusinessCardParser method parsePhone expected to return "N/A"</td>
+                    <td>
+                        <?php
+                        $output = $BCR->parsePhone($invalidEmail);
+                        if(stripos("N/A", $output) !== false){  echo $passed; }
+                        else{ echo $failed;}
                         ?>
                     </td>
                 </tr>
@@ -150,81 +226,23 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                     <th>Passed</th>
                 </tr>
                 <tr>
-                    <td>BusinessCardReader constructor creates valid object</td>
+                    <td>Sanitizer default static method can be called</td>
                     <td>
                         <?php
-                        $BCR = new BusinessCardParser();
-                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
-                        else {echo $failed;}
+                        $cleanData = Sanitizer::sanitize($dirtyInput, NULL);
+                        if(htmlspecialchars_decode($cleanData) === $dirtyInput){echo $passed;}
+                        else{echo $failed;};
                         ?>
                     </td>
                 </tr>
-            </table>
-        </div>
-    </div>
-    <!-- ajax-library.js test section -->
-    <div class="test-section">
-        <div class="title-section">Tests for ajax-library.js</div>
-        <div class="body-section">
-            <table>
-                <tr>
-                    <th>Unit Test Description</th>
-                    <th>Passed</th>
-                </tr>
-                <tr>
-                    <td>BusinessCardReader constructor creates valid object</td>
-                    <td>
-                        <?php
-                        $BCR = new BusinessCardParser();
-                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
-                        else {echo $failed;}
-                        ?>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <!-- parseBCR.php test section -->
-    <div class="test-section">
-        <div class="title-section">Tests for parseBCR.php</div>
-        <div class="body-section">
-            <table>
-                <tr>
-                    <th>Unit Test Description</th>
-                    <th>Passed</th>
-                </tr>
-                <tr>
-                    <td>BusinessCardReader constructor creates valid object</td>
-                    <td>
-                        <?php
-                        $BCR = new BusinessCardParser();
-                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
-                        else {echo $failed;}
-                        ?>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <!-- example-library.js test section -->
-    <div class="test-section">
-        <div class="title-section">Tests for example-library.js</div>
-        <div class="body-section">
-            <table>
-                <tr>
-                    <th>Unit Test Description</th>
-                    <th>Passed</th>
-                </tr>
-                <tr>
-                    <td>BusinessCardReader constructor creates valid object</td>
-                    <td>
-                        <?php
-                        $BCR = new BusinessCardParser();
-                        if(is_a($BCR, "BusinessCardParser")){ echo $passed;}
-                        else {echo $failed;}
-                        ?>
-                    </td>
-                </tr>
+                <td>Sanitizer sanitize flags produce expected results - FILTER_SANITIZE_EMAIL</td>
+                <td>
+                    <?php
+                    $cleanEmail = Sanitizer::sanitize($dirtyEmail,  FILTER_SANITIZE_EMAIL);
+                    if($cleanEmail === "g@gmail.com"){echo $passed;}
+                    else{echo $failed;};
+                    ?>
+                </td>
             </table>
         </div>
     </div>
