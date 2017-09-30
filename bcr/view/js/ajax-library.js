@@ -8,6 +8,10 @@
 function parseCard(){
     var input = document.getElementById("input-box").value;
 
+    //If the input is empty don't proceed
+    if(input === ""){
+        return false;
+    }
     new Ajax.Request( "parseBCR.php",
         {
             method: "get",

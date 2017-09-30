@@ -250,15 +250,10 @@ $dirtyEmail = "g@gm/ail.com";
     Return home <a href="index.php"><span class="glyphicon glyphicon-home"></span></a>
 </div>
 
-
 <hr>
 <footer style="text-align:center;font-size:.8em;">
     <p>Created By: Joshua Standiford</p>
 </footer>
 
-
-<!-- Load scripts at the end -->
-<script src="js/example-library.js"></script>
-<script src="js/ajax-library.js"></script>
 </body>
 </html>

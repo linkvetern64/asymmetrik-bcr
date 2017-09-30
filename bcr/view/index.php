@@ -1,12 +1,13 @@
 <?php
 /**
  * Created by:
- * User: Josh
+ * @author: Josh
+ * @date: 9/29/2017
+ * @desc
+ * This file is the head of the BCR parser.  This file is where the input / output are
+ * and how the data is sent back and forth and visualized.  From here, you can access unit-test.php as well
  */
 require_once(dirname(__FILE__) . '/../load.php');
-
-$BCR = new BusinessCardParser();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,7 @@ $BCR = new BusinessCardParser();
     <div id="symbol"><span id="center-symbol" class="glyphicon glyphicon-chevron-right"></span></div>
 
     <!-- Output box for parsed text -->
-    <div id="output-box" class="box"></div>
+    <div id="output-box" class="box">Output displayed here...</div>
     <div id="parse-box"><button class="btn btn-danger" onclick="parseCard();">Parse</button></div>
 
     <div id="button-footer">
