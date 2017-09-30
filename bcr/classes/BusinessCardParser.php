@@ -37,23 +37,27 @@ class BusinessCardParser
      * @return mixed - String is returned containing email if a valid email is found.
      *                 Otherwise NULL is returned.
      * @desc
-     * This function searches for a valid email address within the lines of data passed into parseEmail
+     * This function searches for a valid email address within the lines of data passed into parseEmail.
      */
     public function parseEmail($data){
-
+        $email = "N/A";
         foreach($data as $line){
+            $line = Sanitizer::sanitize($line, FILTER_SANITIZE_EMAIL);
             //Searches the lines for a valid email address
-            if (filter_var($line, FILTER_VALIDATE_EMAIL)) {
-                return $line;
+            if (!filter_var($line, FILTER_VALIDATE_EMAIL) === false) {
+                $email = $line;
+                break;
             }
         }
-        return NULL;
+        return $email;
     }
 
     /**
      * @name parsePhone
      * @param $data - array containing the lines of the processed document
      * @return mixed|string
+     * @desc
+     *
      */
     public function parsePhone($data){
         //filter lines that contain these phrases
@@ -63,12 +67,13 @@ class BusinessCardParser
                 continue;
             }
 
+            //Replace everything except numbers
             $line = preg_replace('/[^0-9]/', '', $line);
             if(strlen($line) >= 10){
                 return $line;
             }
         }
-        return NULL;
+        return "N/A";
     }
 
     /**
@@ -82,8 +87,6 @@ class BusinessCardParser
      * if any line contains numbers or symbols that line is also thrown away.
      */
     public function parseName($data, $email){
-        $name = NULL;
-
         //Want to return string before the '@' in the email.
         $context = explode("@", $email)[0];
 
@@ -97,6 +100,6 @@ class BusinessCardParser
 
         //If a name is not found above, then informed guessing begins.
 
-
+        return "N/A";
     }
 }

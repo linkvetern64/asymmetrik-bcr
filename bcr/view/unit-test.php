@@ -46,6 +46,8 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                                 Senior Software Engineer
                                 (410)555-1234
                                 msmith@asymmetrik.com";
+
+                $dirtyInput = "";
             ?>
             <table>
                 <tr>
@@ -65,7 +67,9 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                 <tr>
                     <td>BusinessCardParser parses and returns valid ContactInfo instance</td>
                     <td>
-
+                        <?php
+                        $tmp_contact = $BCR->getContactInfo($sampleInput);
+                        ?>
                     </td>
                 </tr>
             </table>
@@ -114,20 +118,6 @@ $failed = "<span class='glyphicon glyphicon-remove failed'></span>";
                         <?php
                         if($contact->getEmailAddress() === "test@gmail.org"){ echo $passed;}
                         else {echo $failed;}
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Instantiating ContactInfo with NULL Parameters throws exception</td>
-                    <td>
-                        <?php
-                        try{
-                            $tmp_contact = new ContactInfo(NULL, "4105556789", "test@gmail.com");
-                            echo $failed;
-                        }
-                        catch(Exception $e){
-                            echo $passed;
-                        }
                         ?>
                     </td>
                 </tr>
