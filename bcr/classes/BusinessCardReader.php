@@ -5,6 +5,8 @@
  * @invariants
  * @desc This class will parse business cards for specific user data
  */
+require_once("ContactInfo.php");
+
 class BusinessCardReader
 {
     /**
@@ -13,4 +15,8 @@ class BusinessCardReader
     function __construct(){
     }
 
+    function makeContact(){
+        $contact = new ContactInfo();
+        return $contact;
+    }
 }

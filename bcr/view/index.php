@@ -3,8 +3,10 @@
  * Created by:
  * User: Josh
  */
-session_start();
 require_once(dirname(__FILE__) . '/../load.php');
+
+$BCR = new BusinessCardReader();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +18,6 @@ require_once(dirname(__FILE__) . '/../load.php');
     <meta name="author" content="Joshua Standiford">
 
     <title>Business Card Parser</title>
-    <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'/ >
 
     <!-- Bootstrap Core CSS -->
     <!-- Latest compiled and minified CSS -->
@@ -31,55 +32,46 @@ require_once(dirname(__FILE__) . '/../load.php');
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- AJAX Prototype Import -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">jQuery.noConflict();</script>
     <script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js"></script>
-
-    <!-- Boostrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript">
-        //var JQ = $.noConflict(); //Need JQUERY.NOCONFLICT();  Otherwise prototypes methods will be overwritten
-        jQuery(function ($) {
-            // The dollar sign will equal jQuery in this scope
-            //Loads JSON data on browser load
-            $(window).on("load", function () {
-
-            });
-        });
-    </script>
 </head>
 <body>
 
 <!-- Title of page -->
-<div id="pageTitle">Business Card Parser Program</div>
+<div id="pageTitle">Business Card Parser</div>
+
 <br />
 <div id="info-box"></div>
 
 <!-- Display Content -->
 <div id="container">
-
+    <!-- Input area for business card text to be parsed -->
     <textarea id="input-box" class="box" placeholder="Business Card Text Here..."></textarea>
 
     <div id="symbol"><span id="center-symbol" class="glyphicon glyphicon-chevron-right"></span></div>
 
+    <!-- Output box for parsed text -->
     <div id="output-box" class="box"></div>
+    <div id="parse-box"><button class="btn btn-danger" onclick="parseCard();">Parse</button></div>
 
     <div id="button-footer">
-        <button class="btn btn-success">Example 1</button>
-        <button class="btn btn-success">Example 2</button>
-        <button class="btn btn-success">Example 3</button>
+        <button class="btn btn-success" onclick="loadExample(0);" onmouseover="showExample(0);" onmouseout="hideExample();">Example 1</button>
+        <button class="btn btn-success" onclick="loadExample(1);" onmouseover="showExample(1);" onmouseout="hideExample();">Example 2</button>
+        <button class="btn btn-success" onclick="loadExample(2);" onmouseover="showExample(2);" onmouseout="hideExample();">Example 3</button>
         <br />
-        <span style="font-size:.8em;">Hover over button for details</span>
+        <span style="font-size:.8em;">Hover over button for details.  Click to load example</span>
+        <br />
     </div>
 </div>
 
 <hr>
 <footer style="text-align:center;font-size:.8em;">
-    <p>Created By: Joshua Standiford</p>
+   <div id="test-message">Tested with unit-tests found here.  <a href="unit-test.php">Unit Tests</a>
+   </div>
 </footer>
 
 
 <!-- Load scripts at the end -->
-
+<script src="js/example-library.js"></script>
+<script src="js/ajax-library.js"></script>
 </body>
 </html>
