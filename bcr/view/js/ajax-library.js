@@ -1,8 +1,6 @@
 /**
  * @name parseCard
- * @param document - String, that will be parsed by parseBCR
- * @desc parseCard makes an AJAX call to parseBCR.  The parameter document is
- * passed in from index.php.  On success the function displayResults(ajax) is called.
+ * @desc parseCard makes an AJAX call to parseBCR. On success the function displayResults(ajax) is called.
  * on failure the responseText is submitted to the console.
  */
 function parseCard(){
@@ -31,8 +29,6 @@ function parseCard(){
  * to index.php's output-box.
  */
 function displayResults(ajax){
-    console.log(ajax.responseText);
-
     var output = document.getElementById("output-box");
     output.innerHTML = "";
     var json = JSON.parse(ajax.responseText);
