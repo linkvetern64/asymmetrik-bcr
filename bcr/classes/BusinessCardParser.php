@@ -76,7 +76,7 @@ class BusinessCardParser
 
             //Replace everything except numbers
             $line = preg_replace('/[^0-9]/', '', $line);
-            if(strlen($line) >= 10){
+            if(strlen($line) >= 10 && strlen($line) < 16){
                 return $line;
             }
         }
@@ -113,7 +113,7 @@ class BusinessCardParser
             if (!preg_match('/\\d/', $line) && !preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $line)){
 
                 //Assuming only First and Last names are listed as names on the card.  Remove anything more than 2
-                if(sizeof(explode(' ', $line)) < 3 && preg_match_all('/[A-Z]/', $line) < 3){
+                if(sizeof(explode(' ', $line)) == 2 && preg_match_all('/[A-Z]/', $line) < 3){
                     array_push($possibleNames, trim($line));
                 }
             }
